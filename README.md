@@ -155,4 +155,4 @@ Contributions are welcome! If you'd like to help improve SAMS, please follow the
 
 ## 📄 License
 
-(Pending) - Please add a license file to your repository (e.g., MIT, GPL).
+(Pending)
