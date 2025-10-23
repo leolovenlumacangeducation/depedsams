@@ -1,0 +1,97 @@
+/* Styles for the consumables card view */
+
+.selectable-card {
+    cursor: pointer; /* Add a pointer to indicate it's clickable */
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.selectable-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.selectable-card.selected {
+    border-color: var(--bs-warning);
+    box-shadow: 0 0 0 .25rem rgba(var(--bs-warning-rgb), .5);
+}
+
+.card-icon-actions {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 10;
+}
+
+.card-icon-actions .btn {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.25rem; /* Add space between stacked buttons */
+}
+.card-icon-actions .btn:last-child {
+    margin-bottom: 0;
+}
+
+.stock-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    line-height: 1;
+    z-index: 10;
+}
+
+/* Print-specific styles for the Stock Card Modal */
+@media print {
+    body * {
+        visibility: hidden; /* Hide everything by default */
+    }
+    #stock-card-printable-area, #stock-card-printable-area * {
+        visibility: visible; /* Show only the printable area and its children */
+    }
+    #stock-card-printable-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+/* Styles for smaller cards, used for out-of-stock items */
+.card.card-small {
+    font-size: 0.8em; /* Reduce font size for all text inside */
+}
+
+.card.card-small .card-img-top {
+    height: 100px; /* Reduce image height */
+}
+
+.card.card-small .card-body {
+    padding: 0.75rem; /* Reduce padding inside the card body */
+}
+
+.card.card-small .stock-badge {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+}
+
+.card.card-small .card-icon-actions { display: none; } /* Hide action icons on small cards */
+
+/* Styles for greyed-out (out-of-stock) cards */
+.card.card-out-of-stock {
+    opacity: 0.65;
+    cursor: default; /* Change cursor as it's less interactive */
+}
+.card.card-out-of-stock .card-img-top {
+    filter: grayscale(100%);
+}
+.card.card-out-of-stock:hover {
+    transform: none; /* Disable the hover lift effect */
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important; /* Revert to default shadow */
+}

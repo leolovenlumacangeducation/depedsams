@@ -1,0 +1,198 @@
+.navbar-brand img { box-shadow: 0 0 0 2px rgba(255,255,255,0.06); border-radius: 6px; }
+
+/* Theme colors */
+:root {
+	/* Updated palette (provided): #222831, #393E46, #393E46, #EEEEEE */
+	--bg: #222831;
+	--accent: #393E46;
+	--muted: #393E46;
+	--text-on-bg: #EEEEEE;
+}
+
+/* Theme classes - applied on <body> */
+body.theme-dark {
+	--bg: #222831;
+	--accent: #393E46;
+	--muted: #393E46;
+	--bg-navbar: #222831;
+	--text-on-bg: #EEEEEE;
+}
+body.theme-light {
+	--accent: #0d6efd;
+	--muted: #6c757d;
+	--bg: #f8f9fa;
+	--bg-navbar: #ffffff;
+	--text-on-bg: #0d1b2a;
+}
+body.theme-grey {
+	--accent: #6c757d;
+	--muted: #9aa4b2;
+	--bg: #f3f4f6;
+	--bg-navbar: #e9ecef;
+	--text-on-bg: #212529;
+}
+
+/* Apply navbar background and text colors from theme variables */
+.navbar {
+	background-color: var(--bg-navbar, var(--bg)) !important;
+	color: var(--text-on-bg) !important;
+	height: 56px; /* compact fixed height */
+	min-height: 56px;
+	padding-top: 0.25rem !important;
+	padding-bottom: 0.25rem !important;
+}
+
+/* Ensure nav items are centered vertically and have consistent spacing */
+.navbar-nav {
+	display: flex;
+	align-items: center;
+    margin-right: 2rem;
+	height: 56px;
+}
+
+/* Normalize button/link heights inside the navbar */
+.navbar .nav-item > .btn,
+.navbar .nav-link {
+	/* match the navbar height so items (search, user menu) vertically center */
+	height: 56px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+/* Specific buttons alignment */
+#themePickerBtn, #notifBtn {
+	line-height: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px 8px;
+}
+
+/* Icon sizing in navbar (keep consistent) */
+.navbar .bi {
+	vertical-align: middle;
+	font-size: 1.15rem;
+	line-height: 1;
+}
+
+/* Avatar sizing/vertical alignment when in .nav-link */
+.navbar .nav-link img.rounded-circle {
+	width: 28px !important;
+	height: 28px !important;
+	object-fit: cover !important;
+	vertical-align: middle;
+}
+
+/* If the user menu is taller, ensure avatar remains centered with a small margin */
+.navbar .nav-link img.rounded-circle { margin-top: 0; margin-bottom: 0; }
+
+/* Reduce extra horizontal padding on user menu link */
+.nav-link.px-3 {
+	padding-left: 0.5rem !important;
+	padding-right: 0.5rem !important;
+}
+
+/* Ensure dropdown-toggle anchors (user menu) vertically center their content */
+.navbar .nav-link.dropdown-toggle.d-flex {
+	height: 56px;
+	align-items: center;
+}
+
+/* Flex wrapper for right-side controls */
+.navbar-nav > .d-flex {
+	gap: 0.5rem;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+
+@media (max-width: 480px) {
+	.navbar-nav > .d-flex { gap: 0.35rem; }
+	#topSearchForm { display: none !important; }
+}
+
+/* On very small screens, hide individual controls and show consolidated mobile menu */
+@media (max-width: 480px) {
+	/* hide bell, theme, and user full menu (but keep mobileControlsBtn visible) */
+	.navbar-nav .d-flex > .nav-item:not(:last-child) { display: none; }
+	.navbar-nav .d-flex > .nav-item:last-child { display: none; }
+	.navbar-nav .d-flex > .nav-item.d-block.d-sm-none { display: block; }
+	#mobileControlsBtn { display: inline-flex; align-items: center; justify-content: center; padding: 6px 8px; }
+	#mobileControlsMenu .dropdown-item { white-space: normal; }
+}
+
+/* Brand text auto-fit: clamp font size and ellipsis when too long */
+.navbar-brand .sams-brand-full {
+	display: inline-block;
+	max-width: calc(100vw - 360px); /* leave room for controls on the right */
+	vertical-align: middle;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: 600;
+	/* responsive font-size: min 12px, preferred 1rem, max 15px */
+	font-size: clamp(10px, 1.2vw, 15px);
+}
+
+/* On very small screens, hide the long name and show acronym only */
+@media (max-width: 768px) {
+	.navbar-brand .sams-brand-full { display: none; }
+}
+
+#topSearchForm { position: relative; }
+#topSearchInput {
+	width: 320px;
+	border-radius: 6px;
+	/* Updated box-shadow for light background (subtle dark shadow) */
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	/* Updated border for light background */
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	/* Light background color */
+	background-color: #ffffff;
+	/* Dark text color */
+	color: #111111;
+	height: 34px; /* smaller input to fit compact navbar */
+	padding: 0.25rem 0.5rem;
+}
+/* Darker placeholder text */
+#topSearchInput::placeholder { 
+    color: #6b7280; 
+}
+
+#topSearchResults { min-width: 300px; max-height: 320px; overflow:auto; }
+
+#topSearchResults .list-group-item { background: #fff; color: #212529; }
+
+/* If individual notif/theme controls exist, hide them since they are now inside user menu */
+#notifBtn, #themePickerBtn { display: none !important; }
+
+/* Badge styling */
+#notifBadge {
+	font-size: 0.65rem;
+	padding: 0.35em 0.45em;
+}
+
+/* Ensure dropdowns from navbar don't overlap fixed header */
+.navbar .dropdown-menu { margin-top: 8px; }
+
+/* Popover content tweaks */
+.popover {
+	max-width: 360px;
+}
+.popover-body .list-group-item { border: none; padding: 0.5rem 0.75rem; }
+
+/* Notifications area inside user dropdown */
+#userDropdownNotifications { max-height: 240px; overflow:auto; }
+
+/* Dropdown tweaks */
+.dropdown-menu { min-width: 220px; }
+.dropdown-menu .dropdown-item i { width: 18px; text-align: center; }
+
+/* Mobile: hide search */
+@media (max-width: 991px) { #topSearchForm { display: none !important; } }
+
+/* Lighten link color in header for better contrast */
+.navbar .nav-link, .navbar .navbar-brand { color: rgba(255,255,255,0.95); }
+

@@ -1,0 +1,87 @@
+/* User Main Content Styles */
+body {
+    font-size: .875rem;
+    background-color: #f5f7fb;
+}
+
+main {
+    padding-top: 1.5rem;
+}
+
+.content {
+    padding: 1.5rem;
+}
+
+/* Card Styles */
+.card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: 1rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Loading States */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+/* User Profile Section */
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.user-profile img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    margin-left: 1rem;
+}
+
+.user-info h4 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.user-info p {
+    margin: 0;
+    color: #6c757d;
+}
+
+/* Footer */
+.footer {
+    padding: 1rem 0;
+    margin-top: auto;
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    main {
+        margin-left: 16.66667%;
+    }
+}
+
+@media (min-width: 992px) {
+    main {
+        margin-left: 16.66667%;
+    }
+}

@@ -1,0 +1,83 @@
+/*
+ * Main Stylesheet for SAMS Application
+ */
+
+body {
+    font-size: .875rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 48px 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+/* --- Sidebar Link Styles --- */
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #343a40; /* A standard dark color for the text */
+}
+
+.sidebar .nav-link.active {
+    color: #0d6efd; /* Keep the active link blue for contrast */
+}
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+/* --- Global Table Styles --- */
+.table {
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075); /* Default hover effect */
+}
+
+.table thead {
+    background-color: #212529; /* Bootstrap dark background */
+    color: #fff; /* White text */
+    text-align: center; /* Center align header text */
+}
+
+/* Ensure all tables are not stripped by default */
+.table {
+    --bs-table-striped-bg: transparent; /* Remove stripping */
+}
+
+/* --- Global Button Styles --- */
+.btn {
+    border-radius: 0; /* Remove rounded corners from all buttons */
+}
+
+/* Custom style for tables that should have a light/white header */
+.table.table-light-header thead {
+    background-color: #6c757d; /* Bootstrap secondary grey */
+    color: #fff; /* White text */
+}
+
+/* Custom style for tables with solid black borders */
+.table-black-bordered,
+.table-black-bordered th,
+.table-black-bordered td {
+    border-color: #000 !important; /* Use !important to override Bootstrap's default grey */
+}

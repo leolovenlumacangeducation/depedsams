@@ -1,0 +1,1 @@
+ALTER TABLE tbl_sep ADD COLUMN has_been_assigned BOOLEAN NOT NULL DEFAULT 0;

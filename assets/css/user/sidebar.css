@@ -1,0 +1,83 @@
+/* User Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(255, 255, 255, .1);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#sidebarMenu {
+    transition: transform 0.3s ease-in-out;
+}
+
+#sidebarMenu .nav-link {
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, .75);
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+#sidebarMenu .nav-link:hover {
+    color: rgba(255, 255, 255, .9);
+    background-color: rgba(255, 255, 255, .1);
+}
+
+#sidebarMenu .nav-link.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .15);
+}
+
+#sidebarMenu .nav-link i {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+#sidebarMenu .badge {
+    font-size: 0.75rem;
+}
+
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #727272;
+}
+
+.sidebar .nav-link.active {
+    color: #2470dc;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+    color: inherit;
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: -100%;
+        width: 100%;
+        max-width: 300px;
+        z-index: 1030;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+}
