@@ -1,83 +1,57 @@
-# TCPDF
-*PHP PDF Library*
+# SAMSPIKPOK - Inventory and Asset Management System
 
-[![Donate via PayPal](https://img.shields.io/badge/donate-paypal-87ceeb.svg)](https://www.paypal.com/donate/?hosted_button_id=NZUEC5XS8MFBJ)
-*Please consider supporting this project by making a donation via [PayPal](https://www.paypal.com/donate/?hosted_button_id=NZUEC5XS8MFBJ)*
+This is a comprehensive, web-based inventory and asset management system, likely designed for educational institutions. It facilitates the tracking of assets from procurement to disposal, including consumables, semi-expendable property (SEP), and property, plant, and equipment (PPE).
 
-* **category**    Library
-* **author**      Nicola Asuni <info@tecnick.com>
-* **copyright**   2002-2025 Nicola Asuni - Tecnick.com LTD
-* **license**     http://www.gnu.org/copyleft/lesser.html GNU-LGPL v3 (see LICENSE.TXT)
-* **link**        http://www.tcpdf.org
-* **source**      https://github.com/tecnickcom/TCPDF
+## Database Schema
 
+The database is structured to manage the entire lifecycle of school assets. Key tables include:
 
-## NOTE
-A new version of this library is under development at https://github.com/tecnickcom/tc-lib-pdf and as a consequence this library is in support only mode.
+*   **Core & Users:**
+    *   `tbl_school`: Basic school information.
+    *   `tbl_user`, `tbl_role`, `tbl_position`: Manages users, roles (Admin, User), and official positions.
+    *   `tbl_officers`: Assigns users to specific approval roles (e.g., Approving Officer).
 
+*   **Procurement:**
+    *   `tbl_supplier`: Stores vendor information.
+    *   `tbl_po`, `tbl_po_item`: Manages purchase orders and the items within them.
+    *   `tbl_delivery`, `tbl_delivery_item`: Tracks the receipt of ordered items.
 
+*   **Inventory & Assets:**
+    *   `tbl_inventory_type`, `tbl_category`: A two-tier system to classify items (e.g., Consumable -> Office Supplies).
+    *   `tbl_consumable`: For tracking stock items like office supplies.
+    *   `tbl_sep`: For semi-expendable property.
+    *   `tbl_ppe`: For property, plant, and equipment.
 
-## Description
+*   **Transactions & Accountability:**
+    *   `tbl_issuance`, `tbl_issuance_item`: Records the issuance of consumable items.
+    *   `tbl_ics`, `tbl_ics_item`: Manages Inventory Custodian Slips for SEP.
+    *   `tbl_par`, `tbl_par_item`: Manages Property Acknowledgment Receipts for PPE.
+    *   `tbl_iirup`, `tbl_iirup_item`: For handling the disposal of unserviceable assets.
 
-PHP library for generating PDF documents on-the-fly.
+*   **Reporting:**
+    *   `tbl_rpci`, `tbl_rpcppe`: Tables for generating physical count reports.
 
-### Main Features:
-* no external libraries are required for the basic functions;
-* all standard page formats, custom page formats, custom margins and units of measure;
-* UTF-8 Unicode and Right-To-Left languages;
-* TrueTypeUnicode, OpenTypeUnicode v1, TrueType, OpenType v1, Type1 and CID-0 fonts;
-* font subsetting;
-* methods to publish some XHTML + CSS code, Javascript and Forms;
-* images, graphic (geometric figures) and transformation methods;
-* supports JPEG, PNG and SVG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/script/formats.php)
-* 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extension, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, Datamatrix, QR-Code, PDF417;
-* JPEG and PNG ICC profiles, Grayscale, RGB, CMYK, Spot Colors and Transparencies;
-* automatic page header and footer management;
-* document encryption up to 256 bit and digital signature certifications;
-* transactions to UNDO commands;
-* PDF annotations, including links, text and file attachments;
-* text rendering modes (fill, stroke and clipping);
-* multiple columns mode;
-* no-write page regions;
-* bookmarks, named destinations and table of content;
-* text hyphenation;
-* text stretching and spacing (tracking);
-* automatic page break, line break and text alignments including justification;
-* automatic page numbering and page groups;
-* move and delete pages;
-* page compression (requires php-zlib extension);
-* XOBject Templates;
-* Layers and object visibility.
-* PDF/A-1b support.
+*   **Number Sequences:** A series of `tbl_*_number` tables are used to generate unique, formatted numbers for documents like POs, ICS, PARs, etc.
 
-### Third party fonts:
+## Installation
 
-This library may include third party font files released with different licenses.
+1.  **Database Setup:**
+    *   Import the `full_setup.sql` file into your MySQL server. This will create the `samspikpok_db` database, all tables, and insert default data.
 
-All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
-they do not contain any binary data but just a description of the general properties of a particular font.
-These files can be also generated on the fly using the font utilities and TCPDF methods.
+2.  **Dependencies:**
+    *   Run `composer install` to install the PHP dependencies.
 
-All the original binary TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files).
+3.  **Default Admin User:**
+    *   The `full_setup.sql` script inserts a list of users, but the passwords are placeholders (`$2y$10$your_secure_hash_here`). You will need to update the `hashed_password` for the users in the `tbl_user` table. Alternatively, you can use the `default_admin.php` script to create a default admin user (username: admin, password: admin).
 
-The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).
-The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.
-For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20120503
-Link : http://www.gnu.org/software/freefont/
+## Usage
 
-The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.
-For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33
-Link : http://dejavu-fonts.org
+1.  **Login:** Access the application via a web server and log in.
+2.  **Dashboard:** View a summary of inventory levels and recent activities.
+3.  **Manage Inventory:**
+    *   **Procurement:** Create and track purchase orders and deliveries.
+    *   **Inventory:** Manage detailed records for consumables, SEPs, and PPEs, including QR code generation.
+    *   **Custody & Accountability:** Issue items to personnel using Inventory Custodian Slips (ICS) and Property Acknowledgment Receipts (PAR).
+4.  **Reporting:** Generate and view various inventory reports, such as the Report of Physical Count of Inventories (RPCI) and Report on the Physical Count of Property, Plant and Equipment (RPCPPE).
+5.  **Admin:** Manage users, school settings, and other system parameters.
 
-The binary files (.z) that begins with the prefix "ae" have been extracted from the Arabeyes.org collection (GNU-GPLv2).
-Link : http://projects.arabeyes.org/
-
-### ICC profile:
-
-TCPDF includes the sRGB.icc profile from the icc-profiles-free Debian package:
-https://packages.debian.org/source/stable/icc-profiles-free
-
-
-## Developer(s) Contact
-
-* Nicola Asuni <info@tecnick.com>
